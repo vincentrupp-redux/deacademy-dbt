@@ -1,6 +1,8 @@
 version: 2
 
 models:
+  - name: purchase
+    description: "DBT model for the purchase table"
   - name: product
     description: "DBT Model for the product table"
   - name: sales
@@ -48,3 +50,8 @@ sources:
     schema: PUBLIC
     tables:
       - name: PRODUCT_SRC
+  - name: purchase
+    database: DBT_DB
+    schema: PUBLIC
+    tables:
+      - name: PURCHASE_SRC

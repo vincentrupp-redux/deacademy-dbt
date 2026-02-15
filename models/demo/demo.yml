@@ -27,11 +27,6 @@ models:
 
 
 sources:
-  - name: product
-    database: DBT_DB
-    schema: PUBLIC
-    tables:
-      - name: PRODUCT_SRC
   - name: sales
     database: DBT_DB
     schema: PUBLIC
@@ -48,3 +43,8 @@ sources:
     tables:
       - name: EMPLOYEE_RAW
       # could have more than one table name here for reference in the {{ source() }} code
+  - name: product
+    database: DBT_DB
+    schema: PUBLIC
+    tables:
+      - name: PRODUCT_SRC

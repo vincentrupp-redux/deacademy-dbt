@@ -1,0 +1,80 @@
+version: 2
+
+models:
+  - name: final_orders
+    description: "DBT MoDeL for the final orders table"
+  - name: clean_orders
+    description: "DBT Model for the clean_orders table"
+  - name: purchase
+    description: "DBT model for the purchase table"
+  - name: product
+    description: "DBT Model for the product table"
+  - name: sales
+    description: "DBT for sales model"
+  - name: customer
+    description: "Customer DBT model"
+  - name: customer_vw
+    description: "DBT model for the customer view"    
+  - name: employee
+    description: "Employee DBT model"
+    columns:
+      - name: emp_id
+        data_tests:
+          - unique
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ["1", "2", "3", "4", "5"]
+              config:
+                severity: warn
+      - name: emp_salary
+        data_tests:
+          - value_check
+  - name: concat_address
+    description: "DBT model for the concat address"
+  - name: concat_name
+    description: "DBT model for the concat name"
+
+
+sources:
+  - name: sales
+    database: DBT_DB
+    schema: PUBLIC
+    tables:
+      - name: SALES_SRC
+  - name: customer
+    database: DBT_DB
+    schema: PUBLIC
+    tables:
+      - name: CUSTOMER_SRC
+  - name: employee
+    database: DBT_DB
+    schema: PUBLIC
+    tables:
+      - name: EMPLOYEE_RAW
+      # could have more than one table name here for reference in the {{ source() }} code
+  - name: product
+    database: DBT_DB
+    schema: PUBLIC
+    tables:
+      - name: PRODUCT_SRC
+  - name: purchase
+    database: DBT_DB
+    schema: PUBLIC
+    tables:
+      - name: PURCHASE_SRC
+  - name: orders
+    database: DBT_DB
+    schema: PUBLIC
+    tables:
+      - name: BASE_ORDERS
+  - name: patient
+    database: DBT_DB
+    schema: PUBLIC
+    tables:
+      - name: PATIENT_SRC
+  - name: country
+    database: DBT_DB
+    schema: PUBLIC
+    tables:
+      - name: SESSION_SRC
